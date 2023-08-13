@@ -1,5 +1,15 @@
 import app from "./app.js";
+import { PORT } from "./config.js";
+import { connectDB } from "./db.js";
 
-app.listen(3000);
+async function main() {
+	try {
+		await connectDB();
+		app.listen(PORT);
+		console.log("Server on port", PORT);
+	} catch (err) {
+		console.error(err);
+	}
+}
 
-console.log("Server on port", 3000);
+main();
